@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/authProvider/authProvider';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
+  const {handleRegister} = useContext(AuthContext);
 
-    const handleRegister = event =>{
+    const handleRegisterWithFrom = event =>{
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -11,6 +14,27 @@ const Register = () => {
         const password = form.password.value;
         const photoURL =form.photo.value;
         console.log(name, email, password, photoURL);
+        handleRegister(email, password)
+        .then(result =>{
+          const loggedUser = result.user;
+          console.log(loggedUser);
+          updateUserData(result.user,name,photoURL)
+        })
+        .catch(error =>{
+          console.log(error);
+        })
+    }
+    const updateUserData = (user,name, photoURL)=>{
+      updateProfile(user ,{
+        displayName: name, photoURL: photoURL,
+      })
+      .then(result =>{
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch(error =>{
+        console.log(error);
+      })
     }
     return (
         <div>
@@ -27,7 +51,7 @@ const Register = () => {
                 <h2 className="text-white text-3xl mb-4  text-center">
                   Please Register
                 </h2>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleRegisterWithFrom}>
                   <div className="form-control">
                     <input
                       type="text"
