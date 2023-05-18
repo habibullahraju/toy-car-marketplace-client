@@ -1,20 +1,18 @@
-import React from "react";
+import React from 'react';
 import Rating from "react-rating";
 import { FaRegStar,FaStar  } from 'react-icons/fa';
-import { Link } from "react-router-dom";
 
-const TractorsCar = ({tractor}) => {
-    const {_id, pictureUrl, name, price, rating} = tractor;
-
-    
-  return (
-    <div className="my-10">
+const SportsCarCard = ({sportsCar}) => {
+    const {pictureUrl, name, price, rating} = sportsCar;
+    console.log(pictureUrl);
+    return (
+        <div className="my-10">
       <div className="card card-compact m-auto w-96 bg-base-100 shadow-xl">
         <figure>
           <img
             className="w-full h-72"
             src={pictureUrl}
-            alt="car picture"
+            alt="Shoes"
           />
         </figure>
         <div className="card-body">
@@ -32,12 +30,12 @@ const TractorsCar = ({tractor}) => {
             </Rating></span>
           </p>
           <div className="card-actions justify-end">
-            <Link to={`/car-details/${_id}`}  className="btn btn-primary">View details</Link>
+            <button className="btn btn-primary">View details</button>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default TractorsCar;
+export default SportsCarCard;

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import TractorsCar from './TractorsCar';
+import SportsCarCard from './SportsCarCard';
+import PoliceCarCard from './PoliceCarCard';
 
 const ShopByCategory = () => {
   const [tractors, setTractors] = useState([]);
-  const [sportsCar , setSportsCar] = useState([]);
-  const [policeCar, setPoliceCar] = useState([]);
+  const [sportsCars , setSportsCars] = useState([]);
+  const [policeCars, setPoliceCars] = useState([]);
 
   useEffect(()=>{
     fetch('http://localhost:5000/tractor-car/tructor')
@@ -19,14 +21,14 @@ const ShopByCategory = () => {
     fetch('http://localhost:5000/tractor-car/sportsCar')
     .then(res => res.json())
     .then(data =>{
-      setSportsCar(data);
+      setSportsCars(data);
     })
   },[])
   useEffect(()=>{
     fetch('http://localhost:5000/tractor-car/policeCar')
     .then(res => res.json())
     .then(data =>{
-      setPoliceCar(data);
+      setPoliceCars(data);
     })
   },[])
     return (
@@ -53,10 +55,24 @@ const ShopByCategory = () => {
       </div>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 2 {sportsCar.length}</h2>
+      <div  className='grid md:grid-cols-2 text-center lg:grid-cols-3 gap-6'>
+        {
+            sportsCars.map(sportsCar => <SportsCarCard
+              key={sportsCar._id}
+              sportsCar={sportsCar}
+            ></SportsCarCard>)
+        }
+      </div>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 3{policeCar.length}</h2>
+      <div className='grid md:grid-cols-2 text-center lg:grid-cols-3 gap-6'>
+        {
+          policeCars.map(policeCar => <PoliceCarCard
+            key={policeCar._id}
+            policeCar={policeCar}
+          ></PoliceCarCard>)
+        }
+      </div>
     </TabPanel>
   </Tabs>
         </div>
