@@ -3,22 +3,32 @@ import AllToyTableRow from "./AllToyTableRow";
 
 const AllToys = () => {
     const [allToys, setAllToys] = useState([]);
+    const [search, setSearch] = useState('');
     useEffect(()=>{
-        fetch('http://localhost:5000/all-cars')
+        fetch('http://localhost:5000/all-cars/')
         .then(res => res.json())
         .then(data => setAllToys(data))
     },[])
+    const handleChange = event =>{
+        setSearch(event.target.value)
+    }
+    const handleSearch = ()=>{
+        fetch(`http://localhost:5000/search/${search}`)
+        .then(res => res.json())
+        .then(data => setAllToys(data))
+    }
   return (
     <div>
       <div className="flex justify-center mb-10">
         <div className="form-control">
           <div className="input-group ">
             <input
+            onChange={handleChange}
               type="text"
               placeholder="Search…"
               className="input input-bordered"
             />
-            <button className="btn btn-square">
+            <button onClick={handleSearch} className="btn btn-square">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
