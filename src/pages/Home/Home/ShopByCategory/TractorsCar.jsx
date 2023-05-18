@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Rating from "react-rating";
 import { FaRegStar,FaStar  } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../provider/authProvider/authProvider";
+
 
 const TractorsCar = ({tractor}) => {
+    const {user} =useContext(AuthContext)
     const {_id, pictureUrl, name, price, rating} = tractor;
+
+
+ 
 
     
   return (
@@ -33,6 +39,7 @@ const TractorsCar = ({tractor}) => {
           </p>
           <div className="card-actions justify-end">
             <Link to={`/car-details/${_id}`}  className="btn btn-primary">View details</Link>
+            
           </div>
         </div>
       </div>
