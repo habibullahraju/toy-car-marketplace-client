@@ -6,6 +6,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import CarDetails from '../pages/Home/Home/CarDetails/CarDetails';
 import PrivateRoute from './PrivateRoute';
+import AllToys from '../pages/Home/Home/AllToys/AllToys';
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: '/car-details/:id',
           element: <PrivateRoute><CarDetails></CarDetails></PrivateRoute>
+        },
+        {
+          path: '/all-toy',
+          element: <AllToys></AllToys>
         }
       ]
     },

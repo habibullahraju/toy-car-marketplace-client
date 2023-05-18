@@ -54,7 +54,7 @@ const NavBar = () => {
                }>All Toy</NavLink>
             {user?
               <NavLink onClick={handleLogOutBtn}   className={({ isActive }) =>
-              isActive ? "text-[#C59D5F] font-bold": ""
+              isActive ? "": ""
        }>LogOut</NavLink>:
     <NavLink to='/login'  className={({ isActive }) =>
               isActive ? "text-[#C59D5F] font-bold": ""
