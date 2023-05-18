@@ -1,9 +1,10 @@
 import React from 'react';
 import Rating from "react-rating";
 import { FaRegStar,FaStar  } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const SportsCarCard = ({sportsCar}) => {
-    const {pictureUrl, name, price, rating} = sportsCar;
+    const {_id, pictureUrl, name, price, rating} = sportsCar;
     console.log(pictureUrl);
     return (
         <div className="my-10">
@@ -30,7 +31,7 @@ const SportsCarCard = ({sportsCar}) => {
             </Rating></span>
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">View details</button>
+            <Link to={`/car-details/${_id}`} className="btn btn-primary">View details</Link>
           </div>
         </div>
       </div>
