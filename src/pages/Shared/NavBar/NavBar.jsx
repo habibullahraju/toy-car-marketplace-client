@@ -1,12 +1,22 @@
 import React, { useContext } from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import logo from "./../../../assets/logo.jpg";
 import { AuthContext } from "../../../provider/authProvider/authProvider";
 
 const NavBar = () => {
 
-  const {user} = useContext(AuthContext);
-  console.log(user);
+  const {user, handleLogOut} = useContext(AuthContext);
+  const handleLogOutBtn = ()=>{
+    handleLogOut()
+    .then(()=>{
+      console.log('LogOut successfully');
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+  }
+
+  
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -35,25 +45,32 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           <div className=" hidden lg:flex ">
-            <ul className="menu menu-horizontal items-center px-1">
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>All Toys</a>
-              </li>
-              <Link to="/login">
-                <li>Login</li>
-              </Link>
+            <ul className="menu menu-horizontal gap-2 items-center px-1">
+            <NavLink to='/'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>Home</NavLink>
+            <NavLink to='/all-toy'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>All Toy</NavLink>
+            {user?
+              <NavLink onClick={handleLogOutBtn}   className={({ isActive }) =>
+              isActive ? "text-[#C59D5F] font-bold": ""
+       }>LogOut</NavLink>:
+    <NavLink to='/login'  className={({ isActive }) =>
+              isActive ? "text-[#C59D5F] font-bold": ""
+       }>Login</NavLink>
+            }
+             
             </ul>
           </div>
-          <div className=" ">
+         {user?
+          <div title={user?.displayName} className=" ">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={user?.photoURL} />
               </div>
             </label>
-          </div>
+          </div>:''}
         </div>
       </div>
     </div>

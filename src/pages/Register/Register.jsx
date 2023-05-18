@@ -4,7 +4,7 @@ import { AuthContext } from '../../provider/authProvider/authProvider';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-  const {handleRegister} = useContext(AuthContext);
+  const {handleRegister, handleGoogleSignIn} = useContext(AuthContext);
 
     const handleRegisterWithFrom = event =>{
         event.preventDefault();
@@ -29,6 +29,16 @@ const Register = () => {
         displayName: name, photoURL: photoURL,
       })
       .then(result =>{
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+    }
+    const handlegoogleLogIn = ()=>{
+      handleGoogleSignIn()
+      .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
       })
@@ -98,7 +108,7 @@ const Register = () => {
                   <Link to="/login" className="text-blue-600">Please Login</Link>
                 </div>
                 <div className="form-control mt-2">
-                  <button className="btn btn-accent">
+                  <button onClick={handlegoogleLogIn} className="btn btn-accent">
                     Sign in with Google
                   </button>
                 </div>
