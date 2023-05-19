@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import AllToyTableRow from "./AllToyTableRow";
 
 const AllToys = () => {
-    const [allToys, setAllToys] = useState([]);
-    const [search, setSearch] = useState('');
-    useEffect(()=>{
-        fetch('http://localhost:5000/all-cars/')
-        .then(res => res.json())
-        .then(data => setAllToys(data))
-    },[])
-    const handleChange = event =>{
-        setSearch(event.target.value)
-    }
-    const handleSearch = ()=>{
-        fetch(`http://localhost:5000/search/${search}`)
-        .then(res => res.json())
-        .then(data => setAllToys(data))
-    }
+  const [allToys, setAllToys] = useState([]);
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    fetch("https://glaze-car-server.vercel.app/all-cars")
+      .then((res) => res.json())
+      .then((data) => setAllToys(data));
+  }, []);
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+  const handleSearch = () => {
+    fetch(`https://glaze-car-server.vercel.app/search/${search}`)
+      .then((res) => res.json())
+      .then((data) => setAllToys(data));
+  };
   return (
     <div>
       <div className="flex justify-center mb-10">
         <div className="form-control">
           <div className="input-group ">
             <input
-            onChange={handleChange}
+              onChange={handleChange}
               type="text"
               placeholder="Search…"
               className="input input-bordered"
@@ -48,7 +48,6 @@ const AllToys = () => {
         </div>
       </div>
 
-
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
           {/* head */}
@@ -65,13 +64,13 @@ const AllToys = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {
-                allToys.map((allToy, idx) => <AllToyTableRow
-                    key={allToy._id}
-                    allToy={allToy}
-                    idx={idx}
-                ></AllToyTableRow>)
-            }
+            {allToys.map((allToy, idx) => (
+              <AllToyTableRow
+                key={allToy._id}
+                allToy={allToy}
+                idx={idx}
+              ></AllToyTableRow>
+            ))}
           </tbody>
         </table>
       </div>
