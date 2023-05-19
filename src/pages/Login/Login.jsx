@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {Link} from "react-router-dom";
 import { AuthContext } from "../../provider/authProvider/authProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+  useTitle('Login')
+  const [error , setError] = useState('');
   const {handleLogin, handleGoogleSignIn} = useContext(AuthContext);
 
 
   const handleLoginWithForm = (event) => {
+    setError('')
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -21,6 +25,7 @@ const Login = () => {
     })
     .catch(error =>{
       console.log(error);
+      setError(error.message)
     })
 
 
@@ -52,11 +57,13 @@ const Login = () => {
                 <h2 className="text-white text-3xl mb-4  text-center">
                   Please Login
                 </h2>
+                <p className="text-yellow-300 text-center">{error}</p>
                 <form onSubmit={handleLoginWithForm}>
                   <div className="form-control">
                     <input
                       type="email"
                       name="email"
+                      required
                       placeholder="Your Email"
                       className="input input-bordered mb-4"
                     />
@@ -64,6 +71,7 @@ const Login = () => {
                   <div className="form-control">
                     <input
                       type="password"
+                      required
                       name="password"
                       placeholder="Your Password"
                       className="input input-bordered"

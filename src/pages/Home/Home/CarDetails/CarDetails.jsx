@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import useTitle from "../../../../hooks/useTitle";
 
 const CarDetails = () => {
+  useTitle('Toy details')
   const {id} = useParams();
   const [car, setCar] = useState(null);
   //   const { name, sellerName, sellerEmail, subCategory, price, availableQuantity,description, rating} = car;

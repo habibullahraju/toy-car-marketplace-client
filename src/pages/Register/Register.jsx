@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/authProvider/authProvider';
 import { updateProfile } from 'firebase/auth';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
+  useTitle('Register')
+  const [error, setError] = useState('');
   const {handleRegister, handleGoogleSignIn} = useContext(AuthContext);
 
     const handleRegisterWithFrom = event =>{
+      setError('')
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -22,6 +26,7 @@ const Register = () => {
         })
         .catch(error =>{
           console.log(error);
+          setError(error.message)
         })
     }
     const updateUserData = (user,name, photoURL)=>{
@@ -61,6 +66,7 @@ const Register = () => {
                 <h2 className="text-white text-3xl mb-4  text-center">
                   Please Register
                 </h2>
+                <p className="text-yellow-300 text-center">{error}</p>
                 <form onSubmit={handleRegisterWithFrom}>
                   <div className="form-control">
                     <input
@@ -74,6 +80,7 @@ const Register = () => {
                     <input
                       type="email"
                       name="email"
+                      required
                       placeholder="Your Email"
                       className="input input-bordered mb-4"
                     />
@@ -82,6 +89,7 @@ const Register = () => {
                     <input
                       type="password"
                       name="password"
+                      required
                       placeholder="Your Password"
                       className="input input-bordered mb-4"
                     />

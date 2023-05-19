@@ -27,21 +27,37 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>All Toys</a>
-              </li>
-              <li>
-                <a>Login</a>
-              </li>
+            <NavLink to='/'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>Home</NavLink>
+            <NavLink to='/blog'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>Blog</NavLink>
+                {user?
+                  <NavLink to='/add-toy'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>Add Toy</NavLink>:""}
+                {user?
+                <NavLink to='/my-toy'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>My Toy</NavLink>:""}
+            <NavLink to='/all-toy'  className={({ isActive }) =>
+                      isActive ? "text-[#C59D5F] font-bold": ""
+               }>All Toy</NavLink>
+            {user?
+              <NavLink onClick={handleLogOutBtn}   className={({ isActive }) =>
+              isActive ? "": ""
+       }>LogOut</NavLink>:
+    <NavLink to='/login'  className={({ isActive }) =>
+              isActive ? "text-[#C59D5F] font-bold": ""
+       }>Login</NavLink>
+            }
             </ul>
           </div>
-          <div className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
             <img className="w-7 h-7" src={logo} alt="logo" />
-            <a className="">Glaze Car</a>
-          </div>
+            <p className="">Glaze Car</p>
+          </Link>
         </div>
         <div className="navbar-end">
           <div className=" hidden lg:flex ">
