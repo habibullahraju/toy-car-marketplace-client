@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 
 const Gallery = () => {
   const [gallery, setGallery] = useState([]);
-  const threeItems = gallery.slice(10, 13);
+  const threeItems = gallery.slice(10, 16);
   useEffect(() => {
     fetch("https://glaze-car-server.vercel.app/all-cars")
       .then((res) => res.json())
@@ -24,17 +24,14 @@ const Gallery = () => {
         Experience the thrill of the open road with our popular car-related
         articles, reviews, and automotive news.
       </p>
-      <div className="md:flex justify-center  gap-5">
+      <div className="grid md:grid-cols-3 justify-center  gap-2">
         {threeItems.map((gr) => (
           <div className="relative" key={gr._id}>
             <img
-              className="mx-auto mb-4 w-96 h-80 object-cover rounded-md"
+              className="mx-auto mb-4 w-96 h-72 object-cover rounded-md"
               src={gr?.pictureUrl}
               alt=""
             />
-            <h3 className="absolute bottom-8  p-2 rounded-3xl text-white shadow-lg border cursor-pointer font-bold uppercase left-36 md:left-28">
-              {gr?.name}
-            </h3>
           </div>
         ))}
       </div>
