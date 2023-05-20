@@ -34,7 +34,7 @@ const ShopByCategory = () => {
   return (
     <div className="my-20">
       <div>
-        <h2 className="text-center font-bold text-4xl mb-16">
+        <h2 className="text-center font-bold text-4xl mb-12">
           Shop By Category
         </h2>
       </div>
