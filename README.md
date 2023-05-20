@@ -39,6 +39,7 @@ Hosted in Firebase ->[Link](https://glaze-car.web.app/)
 - REACT RATING 
 - REACT ICONS
 - REACT TOASTIFY
+- AOS PACKAGE
 - EXPRESS JS
 - MONGODB
 ## React Router Dom v6.4
