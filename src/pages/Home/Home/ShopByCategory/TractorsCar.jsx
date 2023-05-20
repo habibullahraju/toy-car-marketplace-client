@@ -38,7 +38,7 @@ const TractorsCar = ({tractor}) => {
             </Rating></span>
           </p>
           <div className="card-actions justify-end">
-            <Link to={`/car-details/${_id}`}  className="btn btn-primary">View details</Link>
+            <Link to={`/car-details/${_id}`}  className="btn bg-[#E74646] border-none">View details</Link>
             
           </div>
         </div>

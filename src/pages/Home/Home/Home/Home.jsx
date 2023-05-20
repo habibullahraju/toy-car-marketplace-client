@@ -15,7 +15,6 @@ const Home = () => {
             <ShopByCategory></ShopByCategory>
             <PlushCar></PlushCar>
             <DealOfTheDay></DealOfTheDay>
-            <h3>This is home Page</h3>
         </div>
     );
 };

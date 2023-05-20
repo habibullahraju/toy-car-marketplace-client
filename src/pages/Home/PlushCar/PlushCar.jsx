@@ -6,7 +6,7 @@ const PlushCar = () => {
       <div className="md:ml-20 space-y-5 mb-2">
         <h1 className="text-5xl font-bold">Plush Stunning Sports Car Elegance</h1>
         <p className="text-xl">Speed, power, elegance, precision, adrenaline, luxury, craftsmanship, innovation, <br /> performance, exclusivity.</p>
-        <button className="btn">Buy Now</button>
+        <button className="btn bg-[#E74646] border-none">Buy Now</button>
       </div>
       <div>
         <img
